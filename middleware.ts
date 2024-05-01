@@ -1,17 +1,9 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-
-const clerkAuthMiddleware = clerkMiddleware();
-
-const authMiddlewareConfig = {
-  publicRoutes: ['/api/webhooks/clerk'],
-  // ignoredRoutes: ["/api/webhooks(.*)"],
-};
-
-// Remove the redundant import and usage of authMiddleware:
-// const authMiddlewareInstance = authMiddleware(authMiddlewareConfig);
-
-export { clerkAuthMiddleware as default };
-
+import { authMiddleware } from "@clerk/nextjs";
+ 
+export default authMiddleware({
+  publicRoutes: ['/', '/api/webhooks/clerk', '/api/webhooks/stripe']
+});
+ 
 export const config = {
-  matcher: ["/((?!.+.[w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
