@@ -16,7 +16,11 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  title: z.string(),
+  aspectRatio: z.string().optional(),
+  color: z.string().optional(),
+  prompt: z.string().optional(),
+  publicId: z.string(),
 })
 
 const TransformationForm = () => {
